@@ -6,5 +6,5 @@ site: bookdown::bookdown_site
 ---
 
 # Introduction
-In this project, we conduct exploratory analysis and data visualization on gun violence in the United States from 2014 to 2019.
+The legal use of gun and gun-rights is a long existing controversial problem in the United States. Clearly gun-rights are powerful tools for self-defence, but gun violence and unintended hurt may come behind. In this project, we will focus on the negative influence of gun use, namely gun violence. To achieve this, we collect data on gun violence in the United States from 2014 to 2018 and conduct exploratory analysis and data visualization on the data. By our project, we make the data more readable and present the down side of gun use in a visually straight and intuitive way.
 
