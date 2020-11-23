@@ -1,6 +1,6 @@
 # Data sources
 
-Data source: https://www.gunviolencearchive.org/
+Data source: https://www.gunviolencearchive.org/ 
 
 All members in our group are responsible for collecting data since we hope to collect data on topics that both of us are interested in. Since the legal use of gun is a long existing and controversial problems in the United States, we decide to search for data related to this topic to analyze some negative influence of gun-rights and finally reach out our data source website. This website has comprehensive data including total number of incidents of gun violence categorized by deaths and injuries, ages, reasons of shootings and so on. We will use these data to complete exploratory analysis and data visualization tasks such as comparing the number of gun violence in different categories in a time manner or analyzing how the number of gun violence is alternated by geographical region, which is strongly related to state law and crime rates.
 
