@@ -1,5 +1,5 @@
 --- 
-title: "Gun Violence Archive 2014-2018"
+title: "Gun Violence Archive in the United States from 2014 to 2018"
 author: "Yifei Chen and Zujun Peng"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
