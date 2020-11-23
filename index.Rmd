@@ -6,4 +6,5 @@ site: bookdown::bookdown_site
 ---
 
 # Introduction
+In this project, we conduct exploratory analysis and data visualization on gun violence in the United States from 2014 to 2018.
 
