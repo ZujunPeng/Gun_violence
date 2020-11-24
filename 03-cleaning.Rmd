@@ -28,3 +28,4 @@ incident_2016$Operations <- NULL
 incident_2017$Operations <- NULL
 incident_2018$Operations <- NULL
 ```
+

@@ -1,19 +1,26 @@
 # Missing values
 
-```{r}
+```{r, echo = FALSE, eval = TRUE}
+# Read the incident files into dataframes 
+incident_2014 <- read.csv("./data/incident_2014.csv", na.strings = "N/A")
+incident_2015 <- read.csv("./data/incident_2015.csv", na.strings = "N/A")
+incident_2016 <- read.csv("./data/incident_2016.csv", na.strings = "N/A")
+incident_2017 <- read.csv("./data/incident_2017.csv", na.strings = "N/A")
+incident_2018 <- read.csv("./data/incident_2018.csv", na.strings = "N/A")
+incident_2014$Operations <- NULL
+incident_2015$Operations <- NULL
+incident_2016$Operations <- NULL
+incident_2017$Operations <- NULL
+incident_2018$Operations <- NULL
+```
+
+```{r, echo = TRUE}
 sort(colSums(is.na(incident_2014)), decreasing = TRUE)
-sort(colSums(is.na(incident_2015)), decreasing = TRUE)
-sort(colSums(is.na(incident_2016)), decreasing = TRUE)
-sort(colSums(is.na(incident_2017)), decreasing = TRUE)
-sort(colSums(is.na(incident_2018)), decreasing = TRUE)
 ```
 
 As we can see from the above result, there are missing values only in the column "Address" but not the others. Since the goal of our project is to look at the change of total number, including the total number of incidents, address is not going to be used in this project. Therefore, we drop the "Address" column for all datasets. 
 
-```{r}
+```{r, echo = TRUE}
 incident_2014$Address <- NULL
-incident_2015$Address <- NULL
-incident_2016$Address <- NULL
-incident_2017$Address <- NULL
-incident_2018$Address <- NULL
 ```
+
