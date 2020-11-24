@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Missing values | Gun Violence Archive in the United States from 2014 to 2018</title>
-  <meta name="description" content="Chapter 4 Missing values | Gun Violence Archive in the United States from 2014 to 2018" />
+  <title>Chapter 3 Data cleaning | Gun Violence Archive in the United States from 2014 to 2018</title>
+  <meta name="description" content="Chapter 3 Data cleaning | Gun Violence Archive in the United States from 2014 to 2018" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Missing values | Gun Violence Archive in the United States from 2014 to 2018" />
+  <meta property="og:title" content="Chapter 3 Data cleaning | Gun Violence Archive in the United States from 2014 to 2018" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Missing values | Gun Violence Archive in the United States from 2014 to 2018" />
+  <meta name="twitter:title" content="Chapter 3 Data cleaning | Gun Violence Archive in the United States from 2014 to 2018" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-transformation.html"/>
-<link rel="next" href="results.html"/>
+<link rel="prev" href="data-sources.html"/>
+<link rel="next" href="missing-values.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -138,7 +138,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
-<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
+<li class="chapter" data-level="3" data-path="data-cleaning.html"><a href="data-cleaning.html"><i class="fa fa-check"></i><b>3</b> Data cleaning</a></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
 <li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
@@ -162,9 +162,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="missing-values" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> Missing values</h1>
-<p>hello</p>
+<div id="data-cleaning" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Data cleaning</h1>
+<p>From the official website, we get separate csv files for different variables, including total number of incidents, in years from 2014 to 2018. First of all, we transform those csv files into dataframes in R.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data-cleaning.html#cb1-1"></a><span class="co"># Read the incident files into dataframes </span></span>
+<span id="cb1-2"><a href="data-cleaning.html#cb1-2"></a>incident_<span class="dv">2014</span> &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/incident_2014.csv&quot;</span>, <span class="dt">na.strings =</span> <span class="st">&quot;N/A&quot;</span>)</span>
+<span id="cb1-3"><a href="data-cleaning.html#cb1-3"></a>incident_<span class="dv">2015</span> &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/incident_2015.csv&quot;</span>, <span class="dt">na.strings =</span> <span class="st">&quot;N/A&quot;</span>)</span>
+<span id="cb1-4"><a href="data-cleaning.html#cb1-4"></a>incident_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/incident_2016.csv&quot;</span>, <span class="dt">na.strings =</span> <span class="st">&quot;N/A&quot;</span>)</span>
+<span id="cb1-5"><a href="data-cleaning.html#cb1-5"></a>incident_<span class="dv">2017</span> &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/incident_2017.csv&quot;</span>, <span class="dt">na.strings =</span> <span class="st">&quot;N/A&quot;</span>)</span>
+<span id="cb1-6"><a href="data-cleaning.html#cb1-6"></a>incident_<span class="dv">2018</span> &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/incident_2018.csv&quot;</span>, <span class="dt">na.strings =</span> <span class="st">&quot;N/A&quot;</span>)</span></code></pre></div>
+<p>The codes written above are for examples of our way of transforming from csv files into dataframes in R. Let’s look at one of the datasets, incident_2014, which contains information about all incidents reported in 2014.</p>
+<pre><code>##   Incident.ID     Incident.Date    State  City.Or.County
+## 1      274849 December 31, 2014 Missouri     Springfield
+## 2      271885 December 31, 2014 Maryland       Baltimore
+## 3      271883 December 31, 2014 Maryland       Baltimore
+## 4      271878 December 31, 2014 Illinois         Chicago
+## 5      272404 December 31, 2014 Michigan       Ypsilanti
+## 6      271875 December 31, 2014 Maryland Capitol Heights
+##                          Address X..Killed X..Injured Operations
+## 1                           &lt;NA&gt;         0          1         NA
+## 2  4700 block of Shamrock Avenue         0          1         NA
+## 3     5600 block of Harford Road         0          1         NA
+## 4     8600 block of South Racine         0          1         NA
+## 5 900 block of N. Congress Stree         0          0         NA
+## 6  800 block of Balsamtree Drive         1          0         NA</code></pre>
+<p>In the dataset containing information about each incident in 2014, the values in the ‘Operations’ columns are all missing values. This situation happens to all other datasets as well. Therefore, we drop the last column ‘Operations’ for better missing value visualization.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data-cleaning.html#cb3-1"></a>incident_<span class="dv">2014</span><span class="op">$</span>Operations &lt;-<span class="st"> </span><span class="ot">NULL</span></span>
+<span id="cb3-2"><a href="data-cleaning.html#cb3-2"></a>incident_<span class="dv">2015</span><span class="op">$</span>Operations &lt;-<span class="st"> </span><span class="ot">NULL</span></span>
+<span id="cb3-3"><a href="data-cleaning.html#cb3-3"></a>incident_<span class="dv">2016</span><span class="op">$</span>Operations &lt;-<span class="st"> </span><span class="ot">NULL</span></span>
+<span id="cb3-4"><a href="data-cleaning.html#cb3-4"></a>incident_<span class="dv">2017</span><span class="op">$</span>Operations &lt;-<span class="st"> </span><span class="ot">NULL</span></span>
+<span id="cb3-5"><a href="data-cleaning.html#cb3-5"></a>incident_<span class="dv">2018</span><span class="op">$</span>Operations &lt;-<span class="st"> </span><span class="ot">NULL</span></span></code></pre></div>
 
 </div>
             </section>
@@ -172,8 +199,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="data-transformation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="results.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-sources.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="missing-values.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -204,7 +231,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/ZujunPeng/Gun_violence/edit/main/04-missing.Rmd",
+"link": "https://github.com/ZujunPeng/Gun_violence/edit/main/03-cleaning.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -212,7 +239,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/ZujunPeng/Gun_violence/blob/main/04-missing.Rmd",
+"link": "https://github.com/ZujunPeng/Gun_violence/blob/main/03-cleaning.Rmd",
 "text": null
 },
 "download": null,

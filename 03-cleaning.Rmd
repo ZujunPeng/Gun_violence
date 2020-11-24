@@ -1,0 +1,30 @@
+# Data cleaning
+
+From the official website, we get separate csv files for different variables, including total number of incidents, in years from 2014 to 2018. First of all, we transform those csv files into dataframes in R. 
+
+```{r, echo = TRUE}
+# Read the incident files into dataframes 
+incident_2014 <- read.csv("./data/incident_2014.csv", na.strings = "N/A")
+incident_2015 <- read.csv("./data/incident_2015.csv", na.strings = "N/A")
+incident_2016 <- read.csv("./data/incident_2016.csv", na.strings = "N/A")
+incident_2017 <- read.csv("./data/incident_2017.csv", na.strings = "N/A")
+incident_2018 <- read.csv("./data/incident_2018.csv", na.strings = "N/A")
+
+```
+
+The codes written above are for examples of our way of transforming from csv files into dataframes in R. Let's look at one of the datasets, incident_2014, which contains information about all incidents reported in 2014. 
+
+```{r}
+head(incident_2014)
+```
+
+
+In the dataset containing information about each incident in 2014, the values in the 'Operations' columns are all missing values. This situation happens to all other datasets as well. Therefore, we drop the last column 'Operations' for better missing value visualization. 
+
+```{r, echo = TRUE}
+incident_2014$Operations <- NULL
+incident_2015$Operations <- NULL
+incident_2016$Operations <- NULL
+incident_2017$Operations <- NULL
+incident_2018$Operations <- NULL
+```
