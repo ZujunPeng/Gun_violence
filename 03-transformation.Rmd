@@ -18,3 +18,4 @@ death_2018 <- read.csv("./data/death_2018.csv")
 
 ```
 
+The codes written above are for examples of our way of transforming from csv files into dataframes in R.
