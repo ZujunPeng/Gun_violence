@@ -1,3 +1,11 @@
+
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+```
 # Data cleaning
 
 From the official website, we get separate csv files for different variables, including total number of incidents, in years from 2014 to 2018. First of all, we transform those csv files into dataframes in R. 
