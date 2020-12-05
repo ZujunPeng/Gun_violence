@@ -24,7 +24,7 @@
 <meta name="author" content="Yifei Chen and Zujun Peng" />
 
 
-<meta name="date" content="2020-11-23" />
+<meta name="date" content="2020-12-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -166,32 +166,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 3</span> Data cleaning</h1>
 <p>From the official website, we get separate csv files for different variables, including total number of incidents, in years from 2014 to 2018. First of all, we transform those csv files into dataframes in R.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data-cleaning.html#cb1-1"></a><span class="co"># Read the incident files into dataframes </span></span>
-<span id="cb1-2"><a href="data-cleaning.html#cb1-2"></a>incident_<span class="dv">2014</span> &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/incident_2014.csv&quot;</span>, <span class="dt">na.strings =</span> <span class="st">&quot;N/A&quot;</span>)</span>
-<span id="cb1-3"><a href="data-cleaning.html#cb1-3"></a>incident_<span class="dv">2015</span> &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/incident_2015.csv&quot;</span>, <span class="dt">na.strings =</span> <span class="st">&quot;N/A&quot;</span>)</span>
-<span id="cb1-4"><a href="data-cleaning.html#cb1-4"></a>incident_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/incident_2016.csv&quot;</span>, <span class="dt">na.strings =</span> <span class="st">&quot;N/A&quot;</span>)</span>
-<span id="cb1-5"><a href="data-cleaning.html#cb1-5"></a>incident_<span class="dv">2017</span> &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/incident_2017.csv&quot;</span>, <span class="dt">na.strings =</span> <span class="st">&quot;N/A&quot;</span>)</span>
-<span id="cb1-6"><a href="data-cleaning.html#cb1-6"></a>incident_<span class="dv">2018</span> &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/incident_2018.csv&quot;</span>, <span class="dt">na.strings =</span> <span class="st">&quot;N/A&quot;</span>)</span></code></pre></div>
-<p>The codes written above are for examples of our way of transforming from csv files into dataframes in R. Let’s look at one of the datasets, incident_2014, which contains information about all incidents reported in 2014.</p>
-<pre><code>##   Incident.ID     Incident.Date    State  City.Or.County
-## 1      274849 December 31, 2014 Missouri     Springfield
-## 2      271885 December 31, 2014 Maryland       Baltimore
-## 3      271883 December 31, 2014 Maryland       Baltimore
-## 4      271878 December 31, 2014 Illinois         Chicago
-## 5      272404 December 31, 2014 Michigan       Ypsilanti
-## 6      271875 December 31, 2014 Maryland Capitol Heights
-##                          Address X..Killed X..Injured Operations
-## 1                           &lt;NA&gt;         0          1         NA
-## 2  4700 block of Shamrock Avenue         0          1         NA
-## 3     5600 block of Harford Road         0          1         NA
-## 4     8600 block of South Racine         0          1         NA
-## 5 900 block of N. Congress Stree         0          0         NA
-## 6  800 block of Balsamtree Drive         1          0         NA</code></pre>
-<p>In the dataset containing information about each incident in 2014, the values in the ‘Operations’ columns are all missing values. This situation happens to all other datasets as well. Therefore, we drop the last column ‘Operations’ for better missing value visualization.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data-cleaning.html#cb3-1"></a>incident_<span class="dv">2014</span><span class="op">$</span>Operations &lt;-<span class="st"> </span><span class="ot">NULL</span></span>
-<span id="cb3-2"><a href="data-cleaning.html#cb3-2"></a>incident_<span class="dv">2015</span><span class="op">$</span>Operations &lt;-<span class="st"> </span><span class="ot">NULL</span></span>
-<span id="cb3-3"><a href="data-cleaning.html#cb3-3"></a>incident_<span class="dv">2016</span><span class="op">$</span>Operations &lt;-<span class="st"> </span><span class="ot">NULL</span></span>
-<span id="cb3-4"><a href="data-cleaning.html#cb3-4"></a>incident_<span class="dv">2017</span><span class="op">$</span>Operations &lt;-<span class="st"> </span><span class="ot">NULL</span></span>
-<span id="cb3-5"><a href="data-cleaning.html#cb3-5"></a>incident_<span class="dv">2018</span><span class="op">$</span>Operations &lt;-<span class="st"> </span><span class="ot">NULL</span></span></code></pre></div>
+<span id="cb1-2"><a href="data-cleaning.html#cb1-2"></a>education_<span class="dv">2015</span> &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./Data/education_attainment_2015.csv&quot;</span>)</span></code></pre></div>
 
 </div>
             </section>

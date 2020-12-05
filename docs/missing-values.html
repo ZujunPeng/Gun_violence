@@ -24,7 +24,7 @@
 <meta name="author" content="Yifei Chen and Zujun Peng" />
 
 
-<meta name="date" content="2020-11-23" />
+<meta name="date" content="2020-12-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -164,13 +164,260 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="missing-values" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Missing values</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="missing-values.html#cb1-1"></a><span class="kw">sort</span>(<span class="kw">colSums</span>(<span class="kw">is.na</span>(incident_<span class="dv">2014</span>)), <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre><code>##        Address    Incident.ID  Incident.Date          State City.Or.County 
-##            164              0              0              0              0 
-##      X..Killed     X..Injured 
-##              0              0</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="missing-values.html#cb2-1"></a><span class="kw">head</span>(education_<span class="dv">2015</span>)</span></code></pre></div>
+<pre><code>##                                             Label Alabama_Count Alabama_Male
+## 1                   AGE BY EDUCATIONAL ATTAINMENT                           
+## 2                       Population 18 to 24 years       468,319      235,692
+## 3                  Less than high school graduate        70,992       40,806
+## 4     High school graduate (includes equivalency)       149,612       83,861
+## 5              Some college or associate&#39;s degree       212,684       97,919
+## 6                     Bachelor&#39;s degree or higher        35,031       13,106
+##   Alabama_Female Alaska_Count Alaska_Male Alaska_Female Arizona_Count
+## 1                                                                    
+## 2        232,627       82,518      48,263        34,255       669,583
+## 3         30,186       12,427       7,815         4,612       114,187
+## 4         65,751       31,416      18,484        12,932       203,312
+## 5        114,765       33,882      19,865        14,017       302,777
+## 6         21,925        4,793       2,099         2,694        49,307
+##   Arizona_Male Arizona_Female Arkansas_Count Arkansas_Male Arkansas_Female
+## 1                                                                         
+## 2      345,832        323,751        284,441       144,726         139,715
+## 3       67,044         47,143         36,309        20,270          16,039
+## 4      113,257         90,055         90,153        51,576          38,577
+## 5      145,132        157,645        137,505        64,632          72,873
+## 6       20,399         28,908         20,474         8,248          12,226
+##   California_Count California_Male California_Female Colorado_Count
+## 1                                                                  
+## 2        3,943,137       2,037,703         1,905,434        527,949
+## 3          490,779         296,563           194,216         70,618
+## 4        1,166,501         658,547           507,954        157,730
+## 5        1,904,349         921,067           983,282        240,847
+## 6          381,508         161,526           219,982         58,754
+##   Colorado_Male Colorado_Female Connecticut_Count Connecticut_Male
+## 1                                                                 
+## 2       277,962         249,987           352,843          181,858
+## 3        40,123          30,495            37,981           24,913
+## 4        91,640          66,090            97,565           55,832
+## 5       123,405         117,442           165,295           78,571
+## 6        22,794          35,960            52,002           22,542
+##   Connecticut_Female Delaware_Count Delaware_Male Delaware_Female
+## 1                                                                
+## 2            170,985         89,098        44,998          44,100
+## 3             13,068         12,574         7,435           5,139
+## 4             41,733         27,340        14,332          13,008
+## 5             86,724         39,399        18,622          20,777
+## 6             29,460          9,785         4,609           5,176
+##   District.of.Columbia_Count District.of.Columbia_Male
+## 1                                                     
+## 2                     81,506                    37,209
+## 3                      5,031                     3,371
+## 4                     19,290                     9,281
+## 5                     37,684                    17,871
+## 6                     19,501                     6,686
+##   District.of.Columbia_Female Florida_Count Florida_Male Florida_Female
+## 1                                                                      
+## 2                      44,297     1,774,002      912,229        861,773
+## 3                       1,660       290,921      172,078        118,843
+## 4                      10,009       526,907      298,451        228,456
+## 5                      19,813       800,421      380,008        420,413
+## 6                      12,815       155,753       61,692         94,061
+##   Georgia_Count Georgia_Male Georgia_Female Hawaii_Count Hawaii_Male
+## 1                                                                   
+## 2     1,028,679      523,024        505,655      134,483      75,365
+## 3       168,766       98,934         69,832        8,519       3,963
+## 4       327,755      180,073        147,682       51,611      33,464
+## 5       449,485      210,367        239,118       63,452      34,014
+## 6        82,673       33,650         49,023       10,901       3,924
+##   Hawaii_Female Idaho_Count Idaho_Male Idaho_Female Illinois_Count
+## 1                                                                 
+## 2        59,118     156,767     79,751       77,016      1,237,872
+## 3         4,556      21,822     12,383        9,439        154,211
+## 4        18,147      53,986     30,618       23,368        357,249
+## 5        29,438      72,765     32,852       39,913        571,238
+## 6         6,977       8,194      3,898        4,296        155,174
+##   Illinois_Male Illinois_Female Indiana_Count Indiana_Male Indiana_Female
+## 1                                                                        
+## 2       628,615         609,257       676,373      344,413        331,960
+## 3        89,022          65,189       107,912       62,122         45,790
+## 4       195,374         161,875       211,407      117,441         93,966
+## 5       276,086         295,152       293,630      137,353        156,277
+## 6        68,133          87,041        63,424       27,497         35,927
+##   Iowa_Count Iowa_Male Iowa_Female Kansas_Count Kansas_Male Kansas_Female
+## 1                                                                        
+## 2    320,642   165,524     155,118      302,928     160,097       142,831
+## 3     34,913    21,093      13,820       37,791      22,631        15,160
+## 4     83,647    47,408      36,239       89,828      51,348        38,480
+## 5    170,254    84,026      86,228      148,277      74,436        73,841
+## 6     31,828    12,997      18,831       27,032      11,682        15,350
+##   Kentucky_Count Kentucky_Male Kentucky_Female Louisiana_Count Louisiana_Male
+## 1                                                                            
+## 2        425,719       218,474         207,245         459,284        235,246
+## 3         60,373        36,773          23,600          76,591         44,624
+## 4        148,269        84,471          63,798         150,433         85,243
+## 5        185,156        82,564         102,592         198,157         90,286
+## 6         31,921        14,666          17,255          34,103         15,093
+##   Louisiana_Female Maine_Count Maine_Male Maine_Female Maryland_Count
+## 1                                                                    
+## 2          224,038     112,229     58,050       54,179        556,183
+## 3           31,967      13,424      7,166        6,258         61,026
+## 4           65,190      34,849     18,256       16,593        159,573
+## 5          107,871      53,201     27,213       25,988        258,068
+## 6           19,010      10,755      5,415        5,340         77,516
+##   Maryland_Male Maryland_Female Massachusetts_Count Massachusetts_Male
+## 1                                                                     
+## 2       283,318         272,865             700,584            350,262
+## 3        36,143          24,883              71,420             44,116
+## 4        89,925          69,648             192,573            107,784
+## 5       123,717         134,351             315,353            144,534
+## 6        33,533          43,983             121,238             53,828
+##   Massachusetts_Female Michigan_Count Michigan_Male Michigan_Female
+## 1                                                                  
+## 2              350,322        986,405       502,730         483,675
+## 3               27,304        128,219        77,060          51,159
+## 4               84,789        284,916       159,798         125,118
+## 5              170,819        477,521       224,130         253,391
+## 6               67,410         95,749        41,742          54,007
+##   Minnesota_Count Minnesota_Male Minnesota_Female Mississippi_Count
+## 1                                                                  
+## 2         505,761        256,708          249,053           311,989
+## 3          66,536         37,740           28,796            49,158
+## 4         138,996         79,931           59,065            90,111
+## 5         235,159        112,508          122,651           153,465
+## 6          65,070         26,529           38,541            19,255
+##   Mississippi_Male Mississippi_Female Missouri_Count Missouri_Male
+## 1                                                                 
+## 2          156,653            155,336        593,894       302,843
+## 3           29,765             19,393         82,094        47,271
+## 4           48,735             41,376        178,672       100,904
+## 5           69,978             83,487        276,496       131,859
+## 6            8,175             11,080         56,632        22,809
+##   Missouri_Female Montana_Count Montana_Male Montana_Female Nebraska_Count
+## 1                                                                         
+## 2         291,051       100,393       53,454         46,939        192,977
+## 3          34,823        16,220        9,098          7,122         22,584
+## 4          77,768        35,650       19,743         15,907         50,520
+## 5         144,637        42,521       22,733         19,788         95,740
+## 6          33,823         6,002        1,880          4,122         24,133
+##   Nebraska_Male Nebraska_Female Nevada_Count Nevada_Male Nevada_Female
+## 1                                                                     
+## 2        98,599          94,378      254,123     129,724       124,399
+## 3        13,556           9,028       47,331      28,460        18,871
+## 4        28,686          21,834       88,796      48,839        39,957
+## 5        46,649          49,091      105,235      48,389        56,846
+## 6         9,708          14,425       12,761       4,036         8,725
+##   New.Hampshire_Count New.Hampshire_Male New.Hampshire_Female New.Jersey_Count
+## 1                                                                             
+## 2             130,063             66,388               63,675          792,764
+## 3              14,427              7,891                6,536           92,194
+## 4              41,363             24,361               17,002          215,678
+## 5              58,383             27,181               31,202          364,141
+## 6              15,890              6,955                8,935          120,751
+##   New.Jersey_Male New.Jersey_Female New.Mexico_Count New.Mexico_Male
+## 1                                                                   
+## 2         408,466           384,298          208,145         106,747
+## 3          54,099            38,095           37,642          22,360
+## 4         119,962            95,716           62,173          35,479
+## 5         180,401           183,740           98,641          45,193
+## 6          54,004            66,747            9,689           3,715
+##   New.Mexico_Female New.York_Count New.York_Male New.York_Female
+## 1                                                               
+## 2           101,398      1,941,151       974,775         966,376
+## 3            15,282        231,056       133,457          97,599
+## 4            26,694        508,223       283,316         224,907
+## 5            53,448        896,102       430,675         465,427
+## 6             5,974        305,770       127,327         178,443
+##   North.Carolina_Count North.Carolina_Male North.Carolina_Female
+## 1                                                               
+## 2              992,108             522,805               469,303
+## 3              141,265              82,452                58,813
+## 4              305,851             181,300               124,551
+## 5              451,025             220,657               230,368
+## 6               93,967              38,396                55,571
+##   North.Dakota_Count North.Dakota_Male North.Dakota_Female Ohio_Count Ohio_Male
+## 1                                                                              
+## 2             93,597            49,443              44,154  1,087,145   551,057
+## 3              9,624             5,855               3,769    149,417    83,752
+## 4             24,590            14,720               9,870    355,266   200,145
+## 5             47,163            23,458              23,705    476,502   222,728
+## 6             12,220             5,410               6,810    105,960    44,432
+##   Ohio_Female Oklahoma_Count Oklahoma_Male Oklahoma_Female Oregon_Count
+## 1                                                                      
+## 2     536,088        392,378       203,924         188,454      363,364
+## 3      65,665         66,254        37,332          28,922       55,106
+## 4     155,121        127,197        72,567          54,630      109,704
+## 5     253,774        169,139        81,984          87,155      163,286
+## 6      61,528         29,788        12,041          17,747       35,268
+##   Oregon_Male Oregon_Female Pennsylvania_Count Pennsylvania_Male
+## 1                                                               
+## 2     183,929       179,435          1,214,756           618,005
+## 3      34,263        20,843            150,500            87,002
+## 4      59,524        50,180            398,081           220,722
+## 5      75,175        88,111            523,401           251,830
+## 6      14,967        20,301            142,774            58,451
+##   Pennsylvania_Female Rhode.Island_Count Rhode.Island_Male Rhode.Island_Female
+## 1                                                                             
+## 2             596,751            114,340            56,648              57,692
+## 3              63,498             11,114             7,439               3,675
+## 4             177,359             32,621            17,240              15,381
+## 5             271,571             55,722            26,086              29,636
+## 6              84,323             14,883             5,883               9,000
+##   South.Carolina_Count South.Carolina_Male South.Carolina_Female
+## 1                                                               
+## 2              487,006             250,386               236,620
+## 3               62,383              34,945                27,438
+## 4              164,465              95,608                68,857
+## 5              218,004             103,398               114,606
+## 6               42,154              16,435                25,719
+##   South.Dakota_Count South.Dakota_Male South.Dakota_Female Tennessee_Count
+## 1                                                                         
+## 2             85,681            44,388              41,293         633,012
+## 3             12,173             6,974               5,199          66,248
+## 4             25,843            14,397              11,446         230,156
+## 5             39,371            20,098              19,273         278,756
+## 6              8,294             2,919               5,375          57,852
+##   Tennessee_Male Tennessee_Female Texas_Count Texas_Male Texas_Female
+## 1                                                                    
+## 2        320,102          312,910   2,787,469  1,434,799    1,352,670
+## 3         39,104           27,144     445,677    257,721      187,956
+## 4        126,325          103,831     896,395    498,979      397,416
+## 5        131,925          146,831   1,224,498    587,296      637,202
+## 6         22,748           35,104     220,899     90,803      130,096
+##   Utah_Count Utah_Male Utah_Female Vermont_Count Vermont_Male Vermont_Female
+## 1                                                                           
+## 2    341,637   172,958     168,679        67,228       34,843         32,385
+## 3     43,390    25,436      17,954         5,619        3,358          2,261
+## 4    105,883    60,594      45,289        17,715        9,464          8,251
+## 5    169,008    79,592      89,416        34,136       17,429         16,707
+## 6     23,356     7,336      16,020         9,758        4,592          5,166
+##   Virginia_Count Virginia_Male Virginia_Female Washington_Count Washington_Male
+## 1                                                                              
+## 2        827,861       426,987         400,874          669,067         348,769
+## 3         84,270        49,034          35,236           92,652          52,829
+## 4        252,719       144,733         107,986          209,996         119,047
+## 5        392,124       194,283         197,841          296,796         145,617
+## 6         98,748        38,937          59,811           69,623          31,276
+##   Washington_Female West.Virginia_Count West.Virginia_Male West.Virginia_Female
+## 1                                                                              
+## 2           320,298             164,334             85,937               78,397
+## 3            39,823              18,997             10,875                8,122
+## 4            90,949              61,194             37,448               23,746
+## 5           151,179              71,040             32,979               38,061
+## 6            38,347              13,103              4,635                8,468
+##   Wisconsin_Count Wisconsin_Male Wisconsin_Female Wyoming_Count Wyoming_Male
+## 1                                                                           
+## 2         560,301        283,999          276,302        57,860       30,355
+## 3          62,206         35,345           26,861         8,953        5,052
+## 4         176,145        100,221           75,924        19,757       12,019
+## 5         259,581        122,933          136,648        26,466       12,258
+## 6          62,369         25,500           36,869         2,684        1,026
+##   Wyoming_Female Puerto.Rico_Count Puerto.Rico_Male Puerto.Rico_Female
+## 1                                                                     
+## 2         27,505           354,263          178,653            175,610
+## 3          3,901            34,163           20,386             13,777
+## 4          7,738           100,920           54,569             46,351
+## 5         14,208           193,763           92,867            100,896
+## 6          1,658            25,417           10,831             14,586</code></pre>
 <p>As we can see from the above result, there are missing values only in the column “Address” but not the others. Since the goal of our project is to look at the change of total number, including the total number of incidents, address is not going to be used in this project. Therefore, we drop the “Address” column for all datasets.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="missing-values.html#cb3-1"></a>incident_<span class="dv">2014</span><span class="op">$</span>Address &lt;-<span class="st"> </span><span class="ot">NULL</span></span></code></pre></div>
 
 </div>
             </section>
